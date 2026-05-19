@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SurfaceGate Desk - Record Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#6063ee",
+                        "tertiary": "#000000",
+                        "outline-variant": "#c6c6cd",
+                        "on-background": "#0b1c30",
+                        "on-secondary-fixed": "#07006c",
+                        "surface-container": "#e5eeff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary-container": "#7c839b",
+                        "on-tertiary-fixed": "#271901",
+                        "on-tertiary-fixed-variant": "#574425",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "primary-fixed-dim": "#bec6e0",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "surface-tint": "#565e74",
+                        "on-error-container": "#93000a",
+                        "outline": "#76777d",
+                        "tertiary-fixed": "#fcdeb5",
+                        "inverse-primary": "#bec6e0",
+                        "tertiary-container": "#271901",
+                        "on-surface": "#0b1c30",
+                        "surface-dim": "#cbdbf5",
+                        "secondary": "#4648d4",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-low": "#eff4ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#131b2e",
+                        "surface-container-high": "#dce9ff",
+                        "background": "#f8f9ff",
+                        "on-tertiary-container": "#98805d",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dae2fd",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "primary": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "gutter": "12px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "margin-desktop": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .icon-fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        
+        /* Custom scrollbar for textareas to keep it clean */
+        textarea::-webkit-scrollbar {
+            width: 8px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background-color: theme('colors.outline-variant');
+            border-radius: theme('borderRadius.full');
+        }
+    </style>
+</head>
+<body class="h-screen w-screen overflow-hidden flex bg-surface">
+<!-- SideNavBar (Shared Component) -->
+<nav class="hidden md:flex flex-col h-full border-r border-outline-variant p-sm gap-sm docked left-0 h-full w-64 bg-surface-container-low dark:bg-primary-container flat no shadows border-r border-outline-variant dark:border-outline">
+<div class="px-gutter py-md border-b border-outline-variant mb-md flex items-center gap-gutter">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-[20px]">desk</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary leading-tight">SurfaceGate</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant leading-tight">Service Desk</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-xs">
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container dark:hover:bg-primary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-md text-label-md">Workspace</span>
+</a>
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container dark:hover:bg-primary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-md text-label-md">Insights</span>
+</a>
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-primary dark:text-inverse-primary font-bold bg-surface-container-highest dark:bg-secondary-container opacity-80 duration-200" href="#">
+<span class="material-symbols-outlined icon-fill">edit_note</span>
+<span class="font-label-md text-label-md">Record Editor</span>
+</a>
+</div>
+<div class="mt-auto pt-md border-t border-outline-variant flex flex-col gap-xs">
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container dark:hover:bg-primary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-on-surface-variant dark:text-outline-variant hover:bg-surface-container dark:hover:bg-primary-fixed-dim transition-all" href="#">
+<span class="material-symbols-outlined">help</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+<div class="px-gutter py-sm flex items-center gap-gutter mt-sm">
+<img alt="User Avatar" class="w-8 h-8 rounded-full border border-outline-variant" data-alt="A professional headshot of a person used as a user avatar. The image is cropped in a circle. The lighting is studio quality, and the aesthetic matches a modern, clean corporate interface in light mode." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC4pEOmqqmUbjx1Sa11UPrLF_7xbyd1sMLvfrDirkyw8zFspH6K_nkWlHcdkOcjwl2_ynEe5-d3AvYnibcVYlg55O_B6GH7BhLZbfjL__m6vi6ZEDC85NsuNTbB5lCK8BYAd-8OXbRIAltmhF-FCroi7CygEEro0THLzVvUpNPTLmMzxlzG33RA7njM5tPtUw5U1BuHfukuzKY6106evQIhetOwnfn9_7tWZiycsfepUXpYIREY-If-8ASvd6haJcv8WFLMMVBafVi"/>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Active Agent</span>
+</div>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="flex-1 flex flex-col h-full bg-surface relative overflow-hidden">
+<!-- TopNavBar (Shared Component - Adjusted for Editor context, hiding it structurally but keeping the header feel) -->
+<header class="flex justify-between items-center w-full px-margin-desktop py-md gap-gutter bg-surface dark:bg-surface-container border-b border-outline-variant dark:border-outline z-10 flat no shadows">
+<div class="flex items-center gap-gutter">
+<!-- Mobile Menu Button (Visible only on mobile) -->
+<button class="md:hidden p-xs text-on-surface-variant hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-xs">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Editor</span>
+<span class="material-symbols-outlined text-[16px] text-outline">chevron_right</span>
+<h2 class="font-headline-sm text-headline-sm font-bold text-primary dark:text-inverse-primary">New Ticket</h2>
+</div>
+<!-- Unsaved Changes Badge -->
+<div class="ml-lg flex items-center gap-xs bg-error-container text-on-error-container px-sm py-[2px] rounded-full border border-[rgba(186,26,26,0.2)]">
+<div class="w-2 h-2 rounded-full bg-error animate-pulse"></div>
+<span class="font-label-sm text-label-sm font-medium">Unsaved Changes</span>
+</div>
+</div>
+<div class="flex items-center gap-gutter">
+<button class="p-xs text-on-surface-variant hover:bg-surface-container-high dark:hover:bg-primary-container rounded transition-colors" title="Cancel (Esc)">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+</header>
+<!-- Editor Form Area - Centered dense layout -->
+<div class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop flex justify-center w-full bg-[#F4F6F9]">
+<!-- Main Form Container -->
+<form class="w-full max-w-[800px] flex flex-col gap-lg pb-xl">
+<!-- Primary Details Card -->
+<div class="bg-surface border border-outline-variant rounded-lg p-lg flex flex-col gap-md shadow-sm">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary border-b border-outline-variant pb-xs mb-xs">Primary Details</h3>
+<!-- Ticket Title Field (Empty to show validation) -->
+<div class="flex flex-col gap-base relative">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="ticket-title">
+                            Ticket Title <span class="text-error">*</span>
+</label>
+<input class="h-[32px] w-full px-sm border border-error bg-error-container/10 rounded focus:outline-none focus:ring-2 focus:ring-error focus:border-error font-body-sm text-body-sm text-on-surface placeholder:text-outline transition-all" id="ticket-title" placeholder="Brief summary of the issue..." type="text"/>
+<!-- Validation Error Message -->
+<div class="flex items-center gap-xs text-error mt-xs">
+<span class="material-symbols-outlined text-[14px]">error</span>
+<span class="font-label-sm text-label-sm">Validation Error: Title is required to save a ticket.</span>
+</div>
+</div>
+<!-- Description Field -->
+<div class="flex flex-col gap-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="ticket-desc">
+                            Description
+                        </label>
+<textarea class="w-full p-sm border border-outline-variant rounded focus:outline-none focus:ring-2 focus:ring-secondary-container focus:border-transparent font-body-sm text-body-sm text-on-surface placeholder:text-outline transition-all resize-y min-h-[120px]" id="ticket-desc" placeholder="Detailed description of the issue, steps to reproduce, or requested service..." rows="6"></textarea>
+</div>
+</div>
+<!-- Classification & Routing Card (Bento-style layout) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Status & Priority Panel -->
+<div class="bg-surface border border-outline-variant rounded-lg p-lg flex flex-col gap-md shadow-sm">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary border-b border-outline-variant pb-xs mb-xs">Classification</h3>
+<!-- Status Dropdown -->
+<div class="flex flex-col gap-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="ticket-status">
+                                Status <span class="text-error">*</span>
+</label>
+<div class="relative">
+<select class="appearance-none h-[32px] w-full px-sm pr-lg border border-outline-variant rounded bg-surface focus:outline-none focus:ring-2 focus:ring-secondary-container focus:border-transparent font-body-sm text-body-sm text-on-surface cursor-pointer" id="ticket-status">
+<option selected="" value="new">New</option>
+<option value="open">Open</option>
+<option value="pending">Pending</option>
+<option value="resolved">Resolved</option>
+</select>
+<span class="material-symbols-outlined absolute right-sm top-1/2 -translate-y-1/2 text-[18px] text-outline pointer-events-none">arrow_drop_down</span>
+</div>
+</div>
+<!-- Priority Radio Group -->
+<div class="flex flex-col gap-sm mt-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+                                Priority Level <span class="text-error">*</span>
+</label>
+<div class="flex bg-surface-container-low border border-outline-variant rounded p-base gap-base">
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="priority" type="radio" value="low"/>
+<div class="text-center py-xs px-sm rounded font-label-sm text-label-sm text-on-surface-variant peer-checked:bg-surface peer-checked:text-on-surface peer-checked:shadow-sm border border-transparent peer-checked:border-outline-variant transition-all">
+                                        Low
+                                    </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input checked="" class="peer sr-only" name="priority" type="radio" value="medium"/>
+<div class="text-center py-xs px-sm rounded font-label-sm text-label-sm text-on-surface-variant peer-checked:bg-surface peer-checked:text-on-surface peer-checked:shadow-sm border border-transparent peer-checked:border-outline-variant transition-all">
+                                        Medium
+                                    </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="priority" type="radio" value="high"/>
+<div class="text-center py-xs px-sm rounded font-label-sm text-label-sm text-on-surface-variant peer-checked:bg-error-container peer-checked:text-on-error-container peer-checked:shadow-sm border border-transparent peer-checked:border-[rgba(186,26,26,0.3)] transition-all">
+                                        High
+                                    </div>
+</label>
+<label class="flex-1 cursor-pointer">
+<input class="peer sr-only" name="priority" type="radio" value="critical"/>
+<div class="text-center py-xs px-sm rounded font-label-sm text-label-sm text-on-surface-variant peer-checked:bg-error peer-checked:text-on-error peer-checked:shadow-sm border border-transparent peer-checked:border-error transition-all font-bold">
+                                        Critical
+                                    </div>
+</label>
+</div>
+</div>
+</div>
+<!-- Routing & Metadata Panel -->
+<div class="bg-surface border border-outline-variant rounded-lg p-lg flex flex-col gap-md shadow-sm">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary border-b border-outline-variant pb-xs mb-xs">Assignment &amp; Tags</h3>
+<!-- Assignee Field -->
+<div class="flex flex-col gap-base">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs" for="ticket-assignee">
+                                Assignee
+                            </label>
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-sm text-[16px] text-outline pointer-events-none">person_search</span>
+<input class="h-[32px] w-full pl-lg pr-sm border border-outline-variant rounded bg-surface focus:outline-none focus:ring-2 focus:ring-secondary-container focus:border-transparent font-body-sm text-body-sm text-on-surface placeholder:text-outline transition-all" id="ticket-assignee" placeholder="Search team members..." type="text"/>
+</div>
+</div>
+<!-- Tags Field -->
+<div class="flex flex-col gap-base mt-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant flex items-center gap-xs">
+                                Metadata / Tags
+                            </label>
+<div class="min-h-[32px] w-full p-xs border border-outline-variant rounded bg-surface flex flex-wrap gap-xs items-center focus-within:ring-2 focus-within:ring-secondary-container focus-within:border-transparent transition-all">
+<!-- Existing Tags -->
+<div class="flex items-center gap-xs bg-surface-container px-sm py-[2px] rounded border border-outline-variant">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Hardware</span>
+<button class="text-outline hover:text-on-surface transition-colors flex items-center" type="button">
+<span class="material-symbols-outlined text-[12px]">close</span>
+</button>
+</div>
+<div class="flex items-center gap-xs bg-surface-container px-sm py-[2px] rounded border border-outline-variant">
+<span class="font-label-sm text-label-sm text-on-surface-variant">Urgent-Review</span>
+<button class="text-outline hover:text-on-surface transition-colors flex items-center" type="button">
+<span class="material-symbols-outlined text-[12px]">close</span>
+</button>
+</div>
+<!-- Input for new tag -->
+<input class="flex-1 min-w-[80px] bg-transparent border-none focus:ring-0 p-0 font-body-sm text-body-sm text-on-surface placeholder:text-outline h-[24px]" placeholder="Add tag..." type="text"/>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+<!-- Sticky Footer Actions -->
+<div class="bg-surface border-t border-outline-variant p-md flex justify-between items-center z-10 flat no shadows absolute bottom-0 w-full left-0">
+<div class="font-label-sm text-label-sm text-outline flex items-center gap-xs">
+<span class="material-symbols-outlined text-[16px]">info</span>
+                Draft auto-saved 2 mins ago
+            </div>
+<div class="flex items-center gap-sm">
+<!-- Cancel Button (ACT_CANCEL_EDIT) -->
+<button class="h-[32px] px-md flex items-center justify-center border border-outline-variant rounded font-label-md text-label-md text-on-surface hover:bg-surface-container-low transition-colors bg-surface" type="button">
+                    Cancel
+                </button>
+<!-- Save Button (ACT_SAVE_RECORD) -->
+<button class="h-[32px] px-md flex items-center justify-center rounded font-label-md text-label-md text-on-primary bg-primary hover:bg-primary/90 transition-colors shadow-sm gap-xs" type="button">
+<span class="material-symbols-outlined text-[16px]">save</span>
+                    Save Ticket
+                </button>
+</div>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,29 @@
+[
+  {
+    "screenId": "c3572ef16cdf49b483efd1ef981ab802",
+    "name": "Record Editor - SurfaceGate Desk",
+    "type": "form",
+    "description": "Record Editor - SurfaceGate Desk screen",
+    "surfaceIds": [
+      "SURF_RECORD_EDITOR"
+    ]
+  },
+  {
+    "screenId": "302c3fd444b74785957ffe29cc9bcf2d",
+    "name": "Workspace - SurfaceGate Desk",
+    "type": "app-screen",
+    "description": "Workspace - SurfaceGate Desk screen",
+    "surfaceIds": [
+      "SURF_WORKSPACE"
+    ]
+  },
+  {
+    "screenId": "cc07a6200d194205a28624b74a1f0a2c",
+    "name": "Insights - SurfaceGate Desk",
+    "type": "app-screen",
+    "description": "Insights - SurfaceGate Desk screen",
+    "surfaceIds": [
+      "SURF_INSIGHTS"
+    ]
+  }
+]

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SurfaceGate Desk - Workspace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary-container": "#6063ee",
+                      "tertiary": "#000000",
+                      "outline-variant": "#c6c6cd",
+                      "on-background": "#0b1c30",
+                      "on-secondary-fixed": "#07006c",
+                      "surface-container": "#e5eeff",
+                      "surface-container-highest": "#d3e4fe",
+                      "on-primary-container": "#7c839b",
+                      "on-tertiary-fixed": "#271901",
+                      "on-tertiary-fixed-variant": "#574425",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-secondary-fixed-variant": "#2f2ebe",
+                      "primary-fixed-dim": "#bec6e0",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed-dim": "#c0c1ff",
+                      "surface-tint": "#565e74",
+                      "on-error-container": "#93000a",
+                      "outline": "#76777d",
+                      "tertiary-fixed": "#fcdeb5",
+                      "inverse-primary": "#bec6e0",
+                      "tertiary-container": "#271901",
+                      "on-surface": "#0b1c30",
+                      "surface-dim": "#cbdbf5",
+                      "secondary": "#4648d4",
+                      "surface-variant": "#d3e4fe",
+                      "on-surface-variant": "#45464d",
+                      "surface-container-low": "#eff4ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-error": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "inverse-surface": "#213145",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-tertiary": "#ffffff",
+                      "primary-container": "#131b2e",
+                      "surface-container-high": "#dce9ff",
+                      "background": "#f8f9ff",
+                      "on-tertiary-container": "#98805d",
+                      "on-primary": "#ffffff",
+                      "surface": "#f8f9ff",
+                      "on-primary-fixed": "#131b2e",
+                      "surface-container-lowest": "#ffffff",
+                      "primary-fixed": "#dae2fd",
+                      "error": "#ba1a1a",
+                      "secondary-fixed": "#e1e0ff",
+                      "on-secondary-container": "#fffbff",
+                      "tertiary-fixed-dim": "#dec29a",
+                      "primary": "#000000"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "xl": "32px",
+                      "margin-mobile": "16px",
+                      "gutter": "12px",
+                      "base": "4px",
+                      "sm": "8px",
+                      "margin-desktop": "24px",
+                      "xs": "4px",
+                      "md": "16px",
+                      "lg": "24px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "headline-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "body-sm": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "headline-lg-mobile": ["Inter"]
+              },
+              "fontSize": {
+                      "label-sm": ["11px", {"lineHeight": "14px", "fontWeight": "500"}],
+                      "headline-sm": ["16px", {"lineHeight": "24px", "fontWeight": "600"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "body-sm": ["13px", {"lineHeight": "18px", "fontWeight": "400"}],
+                      "headline-lg": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["20px", {"lineHeight": "28px", "fontWeight": "700"}]
+              }
+            }
+          }
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-background h-screen flex flex-col overflow-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface flex justify-between items-center w-full px-margin-desktop py-base gap-gutter border-b border-outline-variant h-14 shrink-0">
+<div class="flex items-center gap-md w-1/3">
+<div class="font-headline-sm text-headline-sm font-bold text-primary">SurfaceGate Desk</div>
+</div>
+<div class="flex-1 flex justify-center w-1/3">
+<div class="relative w-full max-w-md group" onclick="console.log('ACT_SEARCH_RECORDS')">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[18px]">search</span>
+<input class="w-full h-8 pl-9 pr-3 bg-surface-container-low border border-outline-variant rounded focus:border-primary focus:ring-1 focus:ring-primary text-body-sm font-body-sm text-on-surface placeholder:text-outline transition-colors outline-none" placeholder="Search records..." type="text"/>
+</div>
+</div>
+<div class="flex items-center justify-end gap-md w-1/3">
+<button class="flex items-center gap-xs px-3 h-8 bg-primary text-on-primary rounded font-label-sm text-label-sm hover:opacity-90 transition-opacity" onclick="console.log('ACT_CREATE_RECORD')">
+<span class="material-symbols-outlined text-[16px]">add</span>
+                New Ticket
+            </button>
+<div class="flex items-center gap-xs text-on-surface-variant">
+<button class="h-8 w-8 flex items-center justify-center hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+</button>
+<button class="h-8 w-8 flex items-center justify-center hover:bg-surface-container-high rounded transition-colors">
+<span class="material-symbols-outlined text-[20px]">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar -->
+<nav class="bg-surface-container-low h-full w-64 flex flex-col border-r border-outline-variant p-sm gap-sm shrink-0">
+<div class="px-3 py-4 flex items-center gap-3 border-b border-outline-variant mb-2">
+<div class="h-8 w-8 rounded bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-label-md">SG</div>
+<div>
+<div class="font-headline-sm text-headline-sm font-bold text-primary leading-tight">SurfaceGate</div>
+<div class="text-label-sm font-label-sm text-on-surface-variant">Service Desk</div>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-1">
+<a class="flex items-center gap-3 px-3 py-2 text-primary font-bold bg-surface-container-highest rounded-lg transition-all opacity-80" data-active="true" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+<span class="font-label-md text-label-md">Workspace</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="font-label-md text-label-md">Insights</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">edit_note</span>
+<span class="font-label-md text-label-md">Record Editor</span>
+</a>
+</div>
+<div class="flex flex-col gap-1 border-t border-outline-variant pt-2 mt-auto">
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2 text-on-surface-variant hover:bg-surface-container transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-[20px]">help</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-1 flex flex-col bg-background overflow-hidden relative">
+<div class="p-margin-desktop flex flex-col gap-lg h-full overflow-y-auto">
+<!-- Metrics Row -->
+<div class="grid grid-cols-4 gap-md shrink-0">
+<div class="bg-surface border border-outline-variant rounded p-3 flex flex-col gap-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Total Active</span>
+<span class="text-headline-md font-headline-md text-on-background">1,248</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded p-3 flex flex-col gap-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Pending Review</span>
+<span class="text-headline-md font-headline-md text-secondary">342</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded p-3 flex flex-col gap-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">SLA At Risk</span>
+<span class="text-headline-md font-headline-md text-error">18</span>
+</div>
+<div class="bg-surface border border-outline-variant rounded p-3 flex flex-col gap-1">
+<span class="text-label-sm font-label-sm text-on-surface-variant uppercase tracking-wider">Avg Resolution</span>
+<span class="text-headline-md font-headline-md text-on-background">4.2 hrs</span>
+</div>
+</div>
+<!-- Filters & Table Container -->
+<div class="flex-1 bg-surface border border-outline-variant rounded flex flex-col overflow-hidden">
+<!-- Filters Bar -->
+<div class="flex items-center gap-sm p-2 border-b border-outline-variant bg-surface-bright shrink-0">
+<select class="h-8 border border-outline-variant rounded bg-surface text-body-sm font-body-sm text-on-surface px-2 outline-none focus:border-primary">
+<option>Status: All</option>
+<option>Open</option>
+<option>Pending</option>
+</select>
+<select class="h-8 border border-outline-variant rounded bg-surface text-body-sm font-body-sm text-on-surface px-2 outline-none focus:border-primary">
+<option>Priority: All</option>
+<option>High</option>
+<option>Medium</option>
+<option>Low</option>
+</select>
+<select class="h-8 border border-outline-variant rounded bg-surface text-body-sm font-body-sm text-on-surface px-2 outline-none focus:border-primary">
+<option>Assignee: Me</option>
+<option>Unassigned</option>
+<option>Team</option>
+</select>
+<div class="ml-auto flex items-center gap-2 text-on-surface-variant">
+<button class="h-8 w-8 flex items-center justify-center hover:bg-surface-container rounded" onclick="console.log('ACT_RETRY_LOAD')" title="Refresh">
+<span class="material-symbols-outlined text-[18px]">refresh</span>
+</button>
+<span class="text-label-sm font-label-sm">1-50 of 1,248</span>
+</div>
+</div>
+<!-- Data Table -->
+<div class="flex-1 overflow-auto">
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-surface-bright border-b border-outline-variant z-10">
+<tr>
+<th class="px-3 py-2 text-label-sm font-label-sm text-on-surface-variant font-medium w-24">ID</th>
+<th class="px-3 py-2 text-label-sm font-label-sm text-on-surface-variant font-medium">Title</th>
+<th class="px-3 py-2 text-label-sm font-label-sm text-on-surface-variant font-medium w-32">Status</th>
+<th class="px-3 py-2 text-label-sm font-label-sm text-on-surface-variant font-medium w-32">Priority</th>
+<th class="px-3 py-2 text-label-sm font-label-sm text-on-surface-variant font-medium w-40">Created</th>
+<th class="px-3 py-2 w-10"></th>
+</tr>
+</thead>
+<tbody class="text-body-sm font-body-sm">
+<!-- Row 1 -->
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low cursor-pointer transition-colors group" onclick="console.log('ACT_SELECT_RECORD'); document.getElementById('preview-pane').classList.remove('translate-x-full');">
+<td class="px-3 py-2 text-on-surface-variant font-medium">TKT-1042</td>
+<td class="px-3 py-2 text-on-surface truncate max-w-[200px]">Network latency in EU-West region</td>
+<td class="px-3 py-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-error-container text-on-error-container">Open</span>
+</td>
+<td class="px-3 py-2">High</td>
+<td class="px-3 py-2 text-on-surface-variant">10m ago</td>
+<td class="px-3 py-2 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-1 hover:bg-surface-container rounded text-on-surface-variant transition-opacity">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<td class="px-3 py-2 text-on-surface-variant font-medium">TKT-1041</td>
+<td class="px-3 py-2 text-on-surface truncate max-w-[200px]">Database connection timeout on prod replica</td>
+<td class="px-3 py-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-surface-variant text-on-surface-variant">Pending</span>
+</td>
+<td class="px-3 py-2">Critical</td>
+<td class="px-3 py-2 text-on-surface-variant">1h ago</td>
+<td class="px-3 py-2 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-1 hover:bg-surface-container rounded text-on-surface-variant transition-opacity">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low cursor-pointer transition-colors group bg-surface-container-lowest">
+<td class="px-3 py-2 text-on-surface-variant font-medium">TKT-1040</td>
+<td class="px-3 py-2 text-on-surface truncate max-w-[200px]">Update SSL certificates for internal API gateway</td>
+<td class="px-3 py-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-surface-variant text-on-surface-variant">Resolved</span>
+</td>
+<td class="px-3 py-2">Medium</td>
+<td class="px-3 py-2 text-on-surface-variant">Yesterday</td>
+<td class="px-3 py-2 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-1 hover:bg-surface-container rounded text-on-surface-variant transition-opacity">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="border-b border-outline-variant/50 hover:bg-surface-container-low cursor-pointer transition-colors group">
+<td class="px-3 py-2 text-on-surface-variant font-medium">TKT-1039</td>
+<td class="px-3 py-2 text-on-surface truncate max-w-[200px]">User cannot access legacy dashboard</td>
+<td class="px-3 py-2">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-error-container text-on-error-container">Open</span>
+</td>
+<td class="px-3 py-2">Low</td>
+<td class="px-3 py-2 text-on-surface-variant">Yesterday</td>
+<td class="px-3 py-2 text-right">
+<button class="opacity-0 group-hover:opacity-100 p-1 hover:bg-surface-container rounded text-on-surface-variant transition-opacity">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- Slide-over Preview Pane (Hidden by default) -->
+<div class="absolute inset-y-0 right-0 w-96 bg-surface border-l border-outline-variant shadow-[-4px_0_24px_rgba(0,0,0,0.05)] transform translate-x-full transition-transform duration-300 ease-in-out z-20 flex flex-col" id="preview-pane">
+<div class="p-3 border-b border-outline-variant flex items-center justify-between bg-surface-bright">
+<div class="font-headline-sm text-headline-sm text-on-surface">TKT-1042</div>
+<button class="p-1 hover:bg-surface-container rounded text-on-surface-variant" onclick="document.getElementById('preview-pane').classList.add('translate-x-full')">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="p-margin-desktop flex flex-col gap-md overflow-y-auto flex-1">
+<div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-2">Network latency in EU-West region</h3>
+<div class="flex gap-2 mb-4">
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium bg-error-container text-on-error-container">Open</span>
+<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium border border-outline-variant text-on-surface-variant">High Priority</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-3 rounded border border-outline-variant text-body-sm font-body-sm text-on-surface">
+<p class="mb-2 text-on-surface-variant text-label-sm font-label-sm uppercase">Description</p>
+                        Multiple alerts triggering for elevated latency (&gt;500ms) across all ingress points in eu-west-1. Investigating potential routing issues upstream.
+                    </div>
+<div class="flex flex-col gap-2 mt-4">
+<div class="text-label-sm font-label-sm text-on-surface-variant uppercase border-b border-outline-variant pb-1">Quick Actions</div>
+<button class="h-8 bg-primary text-on-primary rounded font-label-sm text-label-sm w-full hover:opacity-90 transition-opacity">Acknowledge Alert</button>
+<button class="h-8 border border-outline-variant bg-surface text-on-surface rounded font-label-sm text-label-sm w-full hover:bg-surface-container transition-colors">Assign to Me</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

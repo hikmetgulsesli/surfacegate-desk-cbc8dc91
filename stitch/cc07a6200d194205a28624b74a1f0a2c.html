@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SurfaceGate Desk - Insights Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#6063ee",
+                        "tertiary": "#000000",
+                        "outline-variant": "#c6c6cd",
+                        "on-background": "#0b1c30",
+                        "on-secondary-fixed": "#07006c",
+                        "surface-container": "#e5eeff",
+                        "surface-container-highest": "#d3e4fe",
+                        "on-primary-container": "#7c839b",
+                        "on-tertiary-fixed": "#271901",
+                        "on-tertiary-fixed-variant": "#574425",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "primary-fixed-dim": "#bec6e0",
+                        "error-container": "#ffdad6",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "surface-tint": "#565e74",
+                        "on-error-container": "#93000a",
+                        "outline": "#76777d",
+                        "tertiary-fixed": "#fcdeb5",
+                        "inverse-primary": "#bec6e0",
+                        "tertiary-container": "#271901",
+                        "on-surface": "#0b1c30",
+                        "surface-dim": "#cbdbf5",
+                        "secondary": "#4648d4",
+                        "surface-variant": "#d3e4fe",
+                        "on-surface-variant": "#45464d",
+                        "surface-container-low": "#eff4ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-error": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "inverse-surface": "#213145",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-tertiary": "#ffffff",
+                        "primary-container": "#131b2e",
+                        "surface-container-high": "#dce9ff",
+                        "background": "#f8f9ff",
+                        "on-tertiary-container": "#98805d",
+                        "on-primary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "on-primary-fixed": "#131b2e",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#dae2fd",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#e1e0ff",
+                        "on-secondary-container": "#fffbff",
+                        "tertiary-fixed-dim": "#dec29a",
+                        "primary": "#000000"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "32px",
+                        "margin-mobile": "16px",
+                        "gutter": "12px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "margin-desktop": "24px",
+                        "xs": "4px",
+                        "md": "16px",
+                        "lg": "24px"
+                    },
+                    "fontFamily": {
+                        "label-sm": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-sm": ["11px", { "lineHeight": "14px", "fontWeight": "500" }],
+                        "headline-sm": ["16px", { "lineHeight": "24px", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-sm": ["13px", { "lineHeight": "18px", "fontWeight": "400" }],
+                        "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["20px", { "lineHeight": "28px", "fontWeight": "700" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        
+        /* Minimalist Scrollbar for high density */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c6c6cd;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #76777d;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md h-screen flex overflow-hidden flex-col md:flex-row">
+<!-- TopNavBar (Mobile Only) -->
+<header class="md:hidden flex justify-between items-center w-full px-margin-mobile py-sm border-b border-outline-variant bg-surface shrink-0">
+<div class="flex items-center gap-sm">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">SurfaceGate Desk</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="search">search</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="menu">menu</span>
+</button>
+</div>
+</header>
+<!-- SideNavBar (Desktop) -->
+<nav class="hidden md:flex flex-col h-full border-r border-outline-variant p-sm gap-sm docked left-0 w-64 bg-surface-container-low shrink-0 z-10">
+<!-- Brand Header -->
+<div class="flex items-center gap-gutter px-gutter py-md border-b border-outline-variant mb-sm">
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary text-[18px]" data-icon="space_dashboard">space_dashboard</span>
+</div>
+<div>
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary leading-none">SurfaceGate</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant mt-1">Service Desk</p>
+</div>
+</div>
+<!-- Main Tabs -->
+<div class="flex-1 flex flex-col gap-xs overflow-y-auto">
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Workspace</span>
+</a>
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-primary font-bold bg-surface-container-highest opacity-80 transition-all duration-200" href="#">
+<span class="material-symbols-outlined text-[20px] fill" data-icon="analytics" data-weight="fill">analytics</span>
+<span class="font-label-md text-label-md">Insights</span>
+</a>
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary" data-icon="edit_note">edit_note</span>
+<span class="font-label-md text-label-md">Record Editor</span>
+</a>
+</div>
+<!-- Footer Tabs -->
+<div class="flex flex-col gap-xs pt-sm border-t border-outline-variant mt-auto">
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-gutter px-gutter py-sm rounded-lg text-on-surface-variant hover:bg-surface-container transition-all group" href="#">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary" data-icon="help">help</span>
+<span class="font-label-md text-label-md">Help</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col h-full overflow-hidden bg-background">
+<!-- Desktop TopNavBar -->
+<header class="hidden md:flex justify-between items-center w-full px-margin-desktop py-base gap-gutter bg-surface border-b border-outline-variant docked full-width top-0 shrink-0 z-10 h-14">
+<!-- Search -->
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-[16px] text-on-surface-variant" data-icon="search">search</span>
+<input class="w-full h-8 pl-9 pr-3 bg-surface-container-lowest border border-outline-variant rounded text-body-sm font-body-sm focus:border-primary focus:ring-0 focus:outline-none placeholder-on-surface-variant" placeholder="Search insights..." type="text"/>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-sm">
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="notifications">notifications</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center text-on-surface-variant rounded hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="account_circle">account_circle</span>
+</button>
+<button class="h-8 px-4 bg-primary text-on-primary rounded font-label-md text-label-md flex items-center gap-xs hover:bg-opacity-90 transition-opacity ml-2">
+<span class="material-symbols-outlined text-[16px]" data-icon="add">add</span>
+                    New Ticket
+                </button>
+</div>
+</header>
+<!-- Scrollable Dashboard Content -->
+<div class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop">
+<!-- Page Header & Global Actions -->
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-sm mb-lg">
+<div>
+<h2 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Insights</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Ticket trends and status summaries for current sprint.</p>
+</div>
+<div class="flex flex-wrap items-center gap-sm">
+<!-- Date Range Filter -->
+<div class="relative flex items-center h-8 border border-outline-variant rounded bg-surface">
+<button class="h-full px-3 flex items-center gap-xs font-label-sm text-label-sm text-on-surface hover:bg-surface-container-low transition-colors rounded-l">
+<span class="material-symbols-outlined text-[14px] text-on-surface-variant" data-icon="calendar_month">calendar_month</span>
+                            Last 7 Days
+                            <span class="material-symbols-outlined text-[16px] text-on-surface-variant" data-icon="arrow_drop_down">arrow_drop_down</span>
+</button>
+</div>
+<!-- Actions -->
+<button class="h-8 px-3 border border-outline-variant text-on-surface rounded font-label-md text-label-md flex items-center gap-xs hover:bg-surface-container-low transition-colors bg-surface" onclick="console.log('ACT_FILTER_INSIGHTS')">
+<span class="material-symbols-outlined text-[16px]" data-icon="filter_list">filter_list</span>
+                        Filter Insights
+                    </button>
+<button class="h-8 px-3 bg-secondary-container text-on-primary rounded font-label-md text-label-md flex items-center gap-xs hover:bg-opacity-90 transition-opacity" onclick="console.log('ACT_EXPORT_SUMMARY')">
+<span class="material-symbols-outlined text-[16px]" data-icon="download">download</span>
+                        Export Summary
+                    </button>
+</div>
+</div>
+<!-- Actionable Hint / Alert -->
+<div class="mb-lg p-sm border border-error-container bg-[#fff5f5] rounded-lg flex items-start gap-sm">
+<span class="material-symbols-outlined text-error text-[20px] shrink-0 mt-0.5" data-icon="warning">warning</span>
+<div>
+<h4 class="font-label-md text-label-md text-on-error-container">SLA Risk Detected</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">3 tickets are nearing SLA breach in the 'Network Infrastructure' queue.</p>
+</div>
+<button class="ml-auto font-label-sm text-label-sm text-secondary hover:underline self-center whitespace-nowrap">View Tickets</button>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter auto-rows-min">
+<!-- KPI: Volume Trend (Span 4) -->
+<div class="col-span-1 md:col-span-4 bg-surface border border-outline-variant rounded-lg p-gutter flex flex-col hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Volume Trend</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]" data-icon="trending_up">trending_up</span>
+</div>
+<div class="flex items-end gap-sm mb-4">
+<span class="font-headline-lg text-[32px] font-bold leading-none text-primary">1,248</span>
+<span class="font-label-sm text-label-sm text-[#10b981] flex items-center mb-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span> 12%
+                        </span>
+</div>
+<!-- Sparkline placeholder using css gradient -->
+<div class="w-full h-12 mt-auto relative rounded overflow-hidden">
+<div class="absolute bottom-0 w-full h-full bg-gradient-to-t from-surface-container to-transparent opacity-50"></div>
+<svg class="absolute bottom-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 30">
+<path d="M0,25 Q10,15 20,20 T40,10 T60,15 T80,5 T100,20 L100,30 L0,30 Z" fill="none" stroke="#6063ee" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- KPI: Avg Resolution Time (Span 4) -->
+<div class="col-span-1 md:col-span-4 bg-surface border border-outline-variant rounded-lg p-gutter flex flex-col hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Avg Resolution Time</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]" data-icon="timer">timer</span>
+</div>
+<div class="flex items-end gap-sm mb-4">
+<span class="font-headline-lg text-[32px] font-bold leading-none text-primary">4.2h</span>
+<span class="font-label-sm text-label-sm text-error flex items-center mb-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span> 0.5h
+                        </span>
+</div>
+<div class="mt-auto flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-[10px] text-on-surface-variant">
+<span>Target: 4.0h</span>
+<span>105% of goal</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-error w-[105%] max-w-full rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- KPI: SLA Compliance (Span 4) -->
+<div class="col-span-1 md:col-span-4 bg-surface border border-outline-variant rounded-lg p-gutter flex flex-col hover:shadow-sm transition-shadow">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">SLA Compliance</span>
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]" data-icon="verified">verified</span>
+</div>
+<div class="flex items-end gap-sm mb-4">
+<span class="font-headline-lg text-[32px] font-bold leading-none text-primary">94.8%</span>
+<span class="font-label-sm text-label-sm text-[#10b981] flex items-center mb-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="arrow_upward">arrow_upward</span> 1.2%
+                        </span>
+</div>
+<div class="mt-auto flex flex-col gap-1">
+<div class="flex justify-between font-label-sm text-[10px] text-on-surface-variant">
+<span>Target: 95.0%</span>
+<span>Slightly below</span>
+</div>
+<div class="w-full h-1.5 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[94.8%] rounded-full"></div>
+</div>
+</div>
+</div>
+<!-- Main Chart Area: Distribution (Span 8) -->
+<div class="col-span-1 md:col-span-8 bg-surface border border-outline-variant rounded-lg p-gutter min-h-[300px] flex flex-col relative overflow-hidden group">
+<div class="flex items-center justify-between mb-md border-b border-outline-variant pb-sm">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary">Tickets by Status</h3>
+<button class="w-6 h-6 flex items-center justify-center text-on-surface-variant rounded hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-[16px]" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<!-- Decorative pseudo-chart structure -->
+<div class="flex-1 flex items-end gap-2 pt-4 px-4 pb-8 relative">
+<!-- Y-axis markers -->
+<div class="absolute left-0 top-4 bottom-8 w-full flex flex-col justify-between font-label-sm text-[10px] text-outline pointer-events-none z-0">
+<div class="w-full border-t border-dashed border-outline-variant flex items-center"><span class="bg-surface pr-1 -mt-2">400</span></div>
+<div class="w-full border-t border-dashed border-outline-variant flex items-center"><span class="bg-surface pr-1 -mt-2">200</span></div>
+<div class="w-full border-t border-dashed border-outline-variant flex items-center"><span class="bg-surface pr-1 -mt-2">0</span></div>
+</div>
+<!-- Bars -->
+<div class="flex-1 flex justify-center items-end h-full z-10 group/bar">
+<div class="w-12 bg-primary-fixed-dim rounded-t-sm h-[85%] relative hover:bg-secondary-container transition-colors duration-300">
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-sm text-[10px] text-on-surface-variant whitespace-nowrap">Open</span>
+</div>
+</div>
+<div class="flex-1 flex justify-center items-end h-full z-10 group/bar">
+<div class="w-12 bg-primary-fixed-dim rounded-t-sm h-[60%] relative hover:bg-secondary-container transition-colors duration-300">
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-sm text-[10px] text-on-surface-variant whitespace-nowrap">In Prog</span>
+</div>
+</div>
+<div class="flex-1 flex justify-center items-end h-full z-10 group/bar">
+<div class="w-12 bg-primary-fixed-dim rounded-t-sm h-[30%] relative hover:bg-secondary-container transition-colors duration-300">
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-sm text-[10px] text-on-surface-variant whitespace-nowrap">Pending</span>
+</div>
+</div>
+<div class="flex-1 flex justify-center items-end h-full z-10 group/bar">
+<div class="w-12 bg-secondary-container rounded-t-sm h-[95%] relative hover:opacity-80 transition-opacity duration-300 shadow-sm">
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-sm text-[10px] text-on-surface-variant whitespace-nowrap">Resolved</span>
+</div>
+</div>
+<div class="flex-1 flex justify-center items-end h-full z-10 group/bar">
+<div class="w-12 bg-primary-fixed-dim rounded-t-sm h-[15%] relative hover:bg-secondary-container transition-colors duration-300">
+<span class="absolute -bottom-6 left-1/2 -translate-x-1/2 font-label-sm text-[10px] text-on-surface-variant whitespace-nowrap">Closed</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Activity List (Span 4) -->
+<div class="col-span-1 md:col-span-4 bg-surface border border-outline-variant rounded-lg p-0 flex flex-col overflow-hidden">
+<div class="p-gutter border-b border-outline-variant flex items-center justify-between bg-surface-container-low">
+<h3 class="font-headline-sm text-headline-sm font-semibold text-primary">Recent Activity</h3>
+<a class="font-label-sm text-label-sm text-secondary hover:underline" href="#">View All</a>
+</div>
+<div class="flex-1 overflow-y-auto">
+<ul class="divide-y divide-outline-variant/50">
+<!-- Activity Item -->
+<li class="p-gutter hover:bg-surface-bright transition-colors group flex gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="check_circle">check_circle</span>
+</div>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface truncate">
+<span class="font-medium text-primary">Ticket #104</span> closed by Agent X
+                                    </p>
+<p class="font-label-sm text-[10px] text-on-surface-variant mt-0.5">2 mins ago • Network Issue</p>
+</div>
+</li>
+<!-- Activity Item -->
+<li class="p-gutter hover:bg-surface-bright transition-colors group flex gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-secondary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="edit">edit</span>
+</div>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface truncate">
+                                        Status updated to 'In Progress' for <span class="font-medium text-primary">Ticket #142</span>
+</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant mt-0.5">15 mins ago • Assigned to Sarah J.</p>
+</div>
+</li>
+<!-- Activity Item -->
+<li class="p-gutter hover:bg-surface-bright transition-colors group flex gap-sm">
+<div class="w-6 h-6 rounded-full bg-error-container text-on-error-container flex items-center justify-center shrink-0 mt-0.5">
+<span class="material-symbols-outlined text-[14px]" data-icon="priority_high">priority_high</span>
+</div>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface truncate">
+<span class="font-medium text-primary">Ticket #089</span> escalated to Tier 3
+                                    </p>
+<p class="font-label-sm text-[10px] text-on-surface-variant mt-0.5">1 hour ago • SLA Warning</p>
+</div>
+</li>
+<!-- Activity Item -->
+<li class="p-gutter hover:bg-surface-bright transition-colors group flex gap-sm">
+<div class="w-6 h-6 rounded-full bg-surface-container-high flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-primary group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[14px]" data-icon="person_add">person_add</span>
+</div>
+<div class="min-w-0">
+<p class="font-body-sm text-body-sm text-on-surface truncate">
+                                        New user onboarded: <span class="font-medium text-primary">Michael T.</span>
+</p>
+<p class="font-label-sm text-[10px] text-on-surface-variant mt-0.5">3 hours ago • HR Request</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div> <!-- End Bento Grid -->
+<!-- Bottom spacer for mobile scrolling -->
+<div class="h-12 md:hidden"></div>
+</div>
+</main>
+</body></html>
